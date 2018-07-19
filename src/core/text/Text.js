@@ -66,6 +66,13 @@ export default class Text extends Sprite
          * @member {CanvasRenderingContext2D}
          */
         this.context = this.canvas.getContext('2d');
+        
+        /**
+         * Forces a custom resolution.
+         * @member {boolean}
+         * @default false
+         */
+        this.forceResolution = false;
 
         /**
          * The resolution / device pixel ratio of the canvas. This is set automatically by the renderer.
@@ -360,7 +367,7 @@ export default class Text extends Sprite
      */
     renderWebGL(renderer)
     {
-        if (this.resolution !== renderer.resolution)
+        if (this.resolution !== renderer.resolution && ! this.forceResolution)
         {
             this.resolution = renderer.resolution;
             this.dirty = true;
